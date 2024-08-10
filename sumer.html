@@ -6,84 +6,60 @@
     
     <style>
         body {
-    font-family: Arial, sans-serif;
+    background-color: #000; /* Fondo negro */
+    color: #ffa07a; /* Color del texto light salmon */
+    margin: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Alinear al principio de la pantalla */
     height: 100vh;
-    background-color: #000;  
-
-    color: #FFA07A;
+    padding-top: 20px; /* Espacio desde la parte superior */
 }
 
 .container {
-    text-align: center;
     width: 50%;
-    background-color: #000;
-    padding: 20px;
+    text-align: center;
 }
 
-#mi-textarea:focus {
-    outline: none;
-}
-        
 textarea {
     width: 100%;
-    height: 100px;
+    height: 300px; /* Aumenta la altura de las cajas de texto */
     margin-bottom: 20px;
     padding: 10px;
     font-size: 16px;
-    background-color: #000;
-    color: #FFA07A;
-    border: none; /* Eliminamos el borde */
+    background-color: #000; /* Fondo negro para el textarea */
+    color: #ffa07a; /* Color del texto en light salmon */
+    border: none; /* Sin bordes */
+    outline: none; /* Quitar el borde azul */
+    resize: none; /* Desactivar el cambio de tamaño */
 }
-
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-textarea {
-  flex: 1;
-  padding: 1rem;
-  font-size: 1.2rem;
-  textarea:focus 
-  outline: none;
-  box-shadow: 0px 0px 5px 2px #007bff;
-}
-
-@media (max-width: 768px) {
-  textarea {
-    font-size: 1rem;
-  }
-}    
     </style>
 </head>
 <body>
     <div class="container">
-        
-        <textarea id="inputText" placeholder="Escribe aquí..."></textarea>
+                <textarea id="inputText" placeholder="Escribe aquí..."></textarea>
         <textarea id="outputText" readonly placeholder="Traducción al sumerio..."></textarea>
     </div>
 
     <script>
-        // Abecedario sumerio simulado
+        // Abecedario sumerio simulado con dos caracteres para cada letra en español
         const abecedarioSumerio = {
-            'a': '𒀀', 'á': '𒀁', 'b': '𒁀', 'c': '𒍑', 'd': '𒁲', 
-            'e': '𒂊', 'é': '𒂋', 'f': '𒉿', 'g': '𒂅', 'h': '𒄭', 
-            'i': '𒅎', 'í': '𒅏', 'j': '𒃾', 'k': '𒆠', 'l': '𒇻', 
-            'm': '𒈠', 'n': '𒉌', 'o': '𒂁', 'ó': '𒂂', 'p': '𒉺', 
-            'q': '𒋡', 'r': '𒊑', 's': '𒊓', 't': '𒋼', 'u': '𒌋', 
-            'ú': '𒌍', 'v': '𒍝', 'w': '𒉿', 'x': '𒍣', 'y': '𒅆', 
-            'z': '𒍣', 'ñ': '𒐉', ':': '𒑖', ';': '𒑛', ' ': ' ', 
-            '.': '𒑰', ',': '𒑱'
+            'a': ['𒀀', '𒀦', '𐎴', '𐎏'], 'á': ['𒀁', '𒀯'], 'b': ['𒁀', '𒁉', '𐎫'], 'c': ['𒍑', '𒌑', '𐎎'], 'd': ['𒁲', '𒂕', '𐏂', '𐎿'],
+            'e': ['𒂊', '𒂯', '𐎻', '𖠣'], 'é': ['𒂋', '𒃂'], 'f': ['𒉿', '𒀯'], 'g': ['𒂅', '𒂫'], 'h': ['𒄭', '𒄸'],
+            'i': ['𒅎', '𒄹', '𐎫'], 'í': ['𒅏', '𒆹'], 'j': ['𒃾', '𒄷'], 'k': ['𒆠', '𒆿'], 'l': ['𒇻', '𒈩', '𐏍'],
+            'm': ['𒈠', '𒉅', '𐎫'], 'n': ['𒉌', '𒌋', '𐎣'], 'o': ['𐎉', '𐎫', '𐎝'], 'ó': ['𒂂', '𒂺'], 'p': ['𒉺', '𐎫'],
+            'q': ['𒋡', '𒋭'], 'r': ['𒊑', '𒌘', '𐎈'], 's': ['𒊓', '𒍪', '𐎘', '𐎽'], 't': ['𒋼', '𒍬', '𖠣'], 'u': ['𒌋', '𒌽'],
+            'ú': ['𒌍', '𒎐'], 'v': ['𒍝', '𒋡', '𐎼'], 'w': ['𒉿', '𐏔'], 'x': ['𒍣', '𐎯'], 'y': ['𒅆', '𒉅'],
+            'z': ['𒍣', '𒍝'], 'ñ': ['𒂫', '𒍑', '𐏌'], ':': ['𒂁', '𒉅'], ';': ['𐎥', '𒋡'], ' ': ' ',
+            '.': ['𒂵', '𐎫'], ',': ['𐏊', '𐎨']
         };
 
         function traducirASumerio(texto) {
-            return texto.toLowerCase().split('').map(caracter => 
-                abecedarioSumerio[caracter] || caracter
-            ).join('');
+            let traduccion = texto.toLowerCase().split('').map(caracter => {
+                let opciones = abecedarioSumerio[caracter];
+                return opciones[Math.floor(Math.random() * opciones.length)];
+            }).join('');
+            return traduccion;
         }
 
         document.getElementById("inputText").addEventListener("input", function() {
