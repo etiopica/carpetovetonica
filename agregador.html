@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helifante con comisario cultural</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #DAE0E6;
+        margin: 0;
+        padding: 0;
+    }
+    .header {
+        background-color: #FF4500;
+        padding: 10px 20px;
+        color: white;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .news-item {
+        display: flex;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .vote-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 10px;
+    }
+    .vote-button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #888;
+    }
+    .vote-button:hover {
+        color: #FF4500;
+    }
+    .vote-count {
+        text-align: center;
+        font-weight: bold;
+        color: #888;
+    }
+    .news-image {
+        width: 100px;
+        height: 100px;
+        margin-right: 15px;
+        object-fit: cover;
+    }
+    .news-content {
+        flex-grow: 1;
+    }
+    .news-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .news-excerpt {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+    .news-meta {
+        font-size: 12px;
+        color: #888;
+    }
+    .user-info {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .user-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    .user-details {
+        font-size: 12px;
+        flex-grow: 1;
+    }
+    .user-quote {
+        font-style: italic;
+        color: #555;
+    }
+    .emotion-buttons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .emotion-button {
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        color: #FF4500;
+        padding: 2px;
+        transition: transform 0.3s ease;
+        position: relative;
+    }
+    .emotion-button.surprised {
+        transform: scale(1.5);
+    }
+    .emotion-button.reset {
+        transform: scale(1);
+    }
+    .emotion-button:hover {
+        background-color: #fff0e6;
+        border-radius: 50%;
+    }
+    .emotion-count {
+        background-color: #FF4500;
+        color: white;
+        font-size: 12px;
+        border-radius: 50%;
+        padding: 2px 5px;
+        margin-left: 5px;
+        min-width: 20px;
+        text-align: center;
+        display: none; /* Oculto por defecto */
+        transition: transform 0.3s ease;
+    }
+    .emotion-button.clicked .emotion-count {
+        display: inline-block; /* Se muestra cuando se hace clic */
+        transform: translateX(10px);
+    }
+</style>
+</head>
+<body>
+    <div class="header">
+        <h1>Helifante, el único agregador con Comisario Cultural</h1>
+    </div>
+    <div class="container">
+        <div class="news-item">
+            <div class="vote-buttons">
+                <button class="vote-button">▲</button>
+                <span class="vote-count">42</span>
+
+            </div>
+            <img class="news-image" src="https://picsum.photos/100/100?random=2" alt="Exposición de arte digital" width="100" height="100">
+            <div class="news-content">
+                <div class="news-title">
+                    <a href="https://www.culturediscourse.com/noticias/exposicion-arte-digital-realidad-virtual">Debate sobre la encuadernación mural medieval</a>
+                </div>
+                <div class="news-excerpt">
+                    La Biblioteca Nacional de Belmares abrirá las puertas el próximo mes de septiembre de la exposición "La encuadernación mural medieval". Practica sobre la preservación de los opusculos religiosos en la alta edad media.
+                </div>
+                <div class="news-meta">
+                    Publicado hace 2 horas · 37 comentarios
+                </div>
+                <div class="user-info">
+                    <img class="user-avatar" src="https://picsum.photos/30/30?random=101" alt="Avatar de TechArtist" width="30" height="30">
+                    <div class="user-details">
+                        <div>Paquita la de Cuenca</div>
+                        <div class="user-quote">"El futuro del arte es digital y sin límites"</div>
+                    </div>
+                    <div class="emotion-buttons">
+                        <button class="emotion-button" title="Enojado">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M14 13C13 11.5 11.5 10 10 10C8.5 10 7 11.5 6 13" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7L4 9" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7L16 9" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                        <button class="emotion-button" title="Aburrido">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M6 13H14" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7H7.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7H13.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                        <button class="emotion-button" title="Feliz">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M14 12C14 12 13 14 10 14C7 14 6 12 6 12" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7H7.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7H13.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="container">
+        <div class="news-item">
+            <div class="vote-buttons">
+                <button class="vote-button">▲</button>
+                <span class="vote-count">42</span>
+                
+            </div>
+            <img class="news-image" src="https://picsum.photos/100/100?random=1" alt="Exposición de arte digital" width="100" height="100">
+            <div class="news-content">
+                <div class="news-title">
+                    <a href="https://www.culturediscourse.com/noticias/exposicion-arte-digital-realidad-virtual">Un libro que ha incendiado a la crítica alemana</a>
+                </div>
+                <div class="news-excerpt">
+                    Un joven austriaco desafía el statu quo con un ensayo provocador y políticamente incorrecto. Una llamada al pueblo para forjar un nuevo camino hacia el futuro, basado en los valores de la identidad, la tradición y la fuerza de un pueblo. Prepárate para cuestionarlo todo.
+                </div>
+                <div class="news-meta">
+                    Publicado hace 2 horas · 37 comentarios
+                </div>
+                <div class="user-info">
+                    <img class="user-avatar" src="https://picsum.photos/30/30?random=102" alt="Avatar de TechArtist" width="30" height="30">
+                    <div class="user-details">
+                        <div>Elmo</div>
+                        <div class="user-quote">Regento un puesto de gominolas, amo las gallinas.</div>
+                    </div>
+                    <div class="emotion-buttons">
+                        <button class="emotion-button" title="Enojado">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M14 13C13 11.5 11.5 10 10 10C8.5 10 7 11.5 6 13" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7L4 9" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7L16 9" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                        <button class="emotion-button" title="Aburrido">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M6 13H14" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7H7.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7H13.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                        <button class="emotion-button" title="Feliz">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M14 12C14 12 13 14 10 14C7 14 6 12 6 12" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7H7.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7H13.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+ <div class="container">
+        <div class="news-item">
+            <div class="vote-buttons">
+                <button class="vote-button">▲</button>
+                <span class="vote-count">42</span>
+
+            </div>
+            <img class="news-image" src="https://picsum.photos/100/100?random=3" alt="Exposición de arte digital" width="100" height="100">
+            <div class="news-content">
+                <div class="news-title">
+                    <a href="https://www.culturediscourse.com/noticias/exposicion-arte-digital-realidad-virtual">La propiedad privada es un robo</a>
+                </div>
+                <div class="news-excerpt">
+                    Desde Proudhon a Bakunin y Kropotkin, finalizando con Engels y Marx el día 29 se abrirá en el Ateneo Libertario de Villaconejos del Monte un simposio para celebrar el pensamiento socialista a través de las reflexiones de sus más grandes pensadores.
+                </div>
+                <div class="news-meta">
+                    Publicado hace 2 horas · 37 comentarios
+                </div>
+                <div class="user-info">
+                    <img class="user-avatar" src="https://picsum.photos/30/30?random=103" alt="Avatar de TechArtist" width="30" height="30">
+                    <div class="user-details">
+                        <div>Pepito_palotes</div>
+                        <div class="user-quote">"Toda la historia de la sociedad humana, es una historia de lucha de clases". Karl Marx </div>
+                    </div>
+                    <div class="emotion-buttons">
+                        <button class="emotion-button" title="Enojado">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M14 13C13 11.5 11.5 10 10 10C8.5 10 7 11.5 6 13" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7L4 9" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7L16 9" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                        <button class="emotion-button" title="Aburrido">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M6 13H14" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7H7.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7H13.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                        <button class="emotion-button" title="Feliz">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M14 12C14 12 13 14 10 14C7 14 6 12 6 12" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7H7.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7H13.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="container">
+        <div class="news-item">
+            <div class="vote-buttons">
+                <button class="vote-button">▲</button>
+                <span class="vote-count">42</span>
+                
+            </div>
+            <img class="news-image" src="https://picsum.photos/100/100?random=4" alt="Exposición de arte digital" width="100" height="100">
+            <div class="news-content">
+                <div class="news-title">
+                    <a href="https://www.culturediscourse.com/noticias/exposicion-arte-digital-realidad-virtual">Marruecos, una historia de amor</a>
+                </div>
+                <div class="news-excerpt">
+                    Descubre la mágica tierra marroquí en esta novela que te transportará a sus coloridos bazares, la hospitalidad de sus gentes, la belleza de sus paisajes y el rico legado cultural que ha enamorado a su autor y a tantos viajeros..
+                </div>
+                <div class="news-meta">
+                    Publicado hace 2 horas · 37 comentarios
+                </div>
+                <div class="user-info">
+                    <img class="user-avatar" src="https://picsum.photos/30/30?random=104" alt="Avatar de TechArtist" width="30" height="30">
+                    <div class="user-details">
+                        <div>Tiburcio</div>
+                        <div class="user-quote">"La multiculturalidad es el camino". Greta Thunberg</div>
+                    </div>
+                    <div class="emotion-buttons">
+                        <button class="emotion-button" title="Enojado">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M14 13C13 11.5 11.5 10 10 10C8.5 10 7 11.5 6 13" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7L4 9" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7L16 9" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                        <button class="emotion-button" title="Aburrido">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M6 13H14" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7H7.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7H13.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                        <button class="emotion-button" title="Feliz">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#FF4500" stroke-width="2"/>
+                                <path d="M14 12C14 12 13 14 10 14C7 14 6 12 6 12" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 7H7.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 7H13.01" stroke="#FF4500" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="emotion-count">1</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aquí puedes añadir más elementos de noticias -->
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+<script>
+    document.querySelectorAll('.emotion-button').forEach(button => {
+        button.addEventListener('click', () => {
+            // Primero, eliminar la clase sorpresa y clicked de todos los botones
+            document.querySelectorAll('.emotion-button').forEach(btn => {
+                btn.classList.remove('surprised');
+                btn.classList.remove('clicked');
+            });
+
+            // Agregar la clase sorpresa y clicked al botón clicado
+            button.classList.add('surprised');
+            button.classList.add('clicked');
+
+            // Después de 0.3 segundos (duración de la animación), quitar la clase sorpresa
+            setTimeout(() => {
+                button.classList.remove('surprised');
+            }, 300);
+        });
+    });
+</script>
+</body>
+</html>
